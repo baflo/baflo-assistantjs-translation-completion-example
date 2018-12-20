@@ -10,5 +10,11 @@ Built using [AssistantJS](https://github.com/webcomputing/AssistantJS)!
    from `return platformSpecHelper.pretendIntentCalled(intentToCall, additionalExtractions, additionalRequestContext);`
    to   `return platformSpecHelper.pretendIntentCalled(intentToCall, false, additionalExtractions, additionalRequestContext);`
 
-3) You possibly must fix `.node_modules/assistant-alexa/lib/spec-helper.js` and replace all `this.specSetup.setup` by ` this.specSetup.assistantJs`.
+4) You possibly must fix `.node_modules/assistant-source/lib/components/unifier/generator.js` line `133`: 
+
+   from `return this.platformGenerators.map(generator => Promise.resolve(generator.execute(language, languageSpecificBuildDir, buildIntentConfigs.map(config => JSON.parse(JSON.stringify(config))), JSON.parse(JSON.stringify(parameterMapping)))));`
+   to `return this.platformGenerators.map(generator => Promise.resolve(generator.execute(language, languageSpecificBuildDir, buildIntentConfigs.map(config => JSON.parse(JSON.stringify(config))), JSON.parse(JSON.stringify(parameterMapping)), {})));`
+
+
+4) You possibly must fix `.node_modules/assistant-alexa/lib/spec-helper.js` and replace all `this.specSetup.setup` by ` this.specSetup.assistantJs`.
 
